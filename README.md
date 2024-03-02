@@ -1,0 +1,1 @@
+This is CHF's prototype for a simple console based data directory that will allow a user to enter a YP's forename and surname and view/amend the stored data for that YP. This prototype code features 10x synthesised young people and corresponding data. There are also self validation and pytest functions that ensure the program works as smoothly for the user as possible.
