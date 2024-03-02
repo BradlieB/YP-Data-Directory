@@ -16,14 +16,13 @@ def Test_Stored_YP_Data(capsys):
     captured = capsys.readouterr()
     assert "All stored YP data:" in captured.out
 
-# - This tests the function of searching by forename and surname and ensures that when a forename and surname that match a record are entered that the user can then amend all other data within that dataset.
-def Test_Amend_YP_Data_By_Name():
+# - This tests the function of searching by forename and surname and ensures that when a forename and surname that match a record are entered that the program retrieves the full relevent dataset.
+def Test_Query_YP_Data_By_Name():
     datasets = Hardcoded_YP_Data()
-    amended_data = {"YP's Wheelchair Model:": "NewModel", "Risk Assessment Status:": True}
-    Amend_YP_Data_By_Name(datasets, "Robert", "Kent", amended_data)
-    updated_data = Query_YP_Data_By_Name(datasets, "Robert", "Kent")
-    assert updated_data["YP's Wheelchair Model:"] == "NewModel"
-    assert updated_data["Risk Assessment Status:"] == True
+    result = Query_YP_Data_By_Name(datasets, "Robert", "Kent")
+    assert result is not None
+    assert result["Forename"] == "Robert"
+    assert result["Surname"] == "Kent"
 
 # - This function validates that any data the user has entered into the program is an integer where required/relevant.
 def validate_integer_input(prompt):
@@ -128,7 +127,7 @@ def main():
                 "YP's Access Method:": input("What is the YP's current access method? "),
                 "Risk Assessment Status:": validate_boolean_input("What is the YP's current status of risk assessment? Please input either: (True/False):"),
             }
-            amend_dataset(datasets, Forename, Surname, amended_yp_data)
+            Amend_YP_Data_By_Name(datasets, Forename, Surname, amended_yp_data)
         elif user_selection == "3":
             print("Exiting the program. Goodbye!")
             break
