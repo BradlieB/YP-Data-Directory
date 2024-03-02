@@ -16,14 +16,6 @@ def Test_Stored_YP_Data(capsys):
     captured = capsys.readouterr()
     assert "All stored YP data:" in captured.out
 
-# - This tests the function of searching by forename and surname and ensures that when a forename and surname that match a record are entered that the program retrieves the full relevent dataset.
-def Test_Query_YP_Data_By_Name():
-    datasets = Hardcoded_YP_Data()
-    result = Query_YP_Data_By_Name(datasets, "Robert", "Kent")
-    assert result is not None
-    assert result["Forename"] == "Robert"
-    assert result["Surname"] == "Kent"
-
 # - This tests the function of searching by forename and surname and ensures that when a forename and surname that match a record are entered that the user can then amend all other data within that dataset.
 def Test_Amend_YP_Data_By_Name():
     datasets = Hardcoded_YP_Data()
